@@ -13,52 +13,72 @@ import qs from 'qs';
 import axios from 'axios';
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
-
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
  export default function Dashboard({navigation}){
+
    const [data,setData] = useState([]);
+   const [increment ,setIncrement]=useState(0);
+
+     const increase = () => {
+       
+      setIncrement(prevIncrement => prevIncrement + 1);
+
+     }
+
    useFocusEffect(
       React.useCallback(() => {
-        api.get(curatedData,qs.stringify({
+
+        api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=20`,qs.stringify({
 
       }))
         .then(function (response) {
-   setData(response.data.photos)
-                       console.log(response)
-
+          setData(response.data.photos)
            })
             .catch(function (error) {
-             console.log(error)
            });
 
-     },[])
+     },[increment])
     );
-    const test=(url)=>{
+//     const test=()=>{
 
-console.log(url)
-    }
+// var total = 8000
+// var pageSize = 1000
+
+// for (var i=1;i<(total/pageSize +1); i++){
+//     console.log(i)
+//    ` https://api.pexels.com/v1/curated/?page=${i}&per_page=15`
+// }
+//     }
 
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
-
+      <TouchableOpacity  onPress={() => test()}>
+      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4')}}>WALLX</Text>
+      </TouchableOpacity>
+      <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
     </View>
       <FlatList
+             showsVerticalScrollIndicator={false}
+        numColumns={2}
              data={data}
+             onEndReached={increase} // Triggered when the user reaches the end of the list
+             onEndReachedThreshold={0.5}
+             style={{backgroundColor:'gray',width:wp('99')}}
              renderItem={({item}) =>
            <>
+           <CardView
+          cornerRadius={5}
+             style={styles.item}>
+                <Image source={{uri : item.src.portrait}} style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
+                {/*<Text style={{fontSize:hp('1.70'),letterSpacing:wp('.10%'),minWidth:wp('15'),marginTop:hp('2'),fontWeight:'400',color:'black'}}>{item.photographer}</Text>*/}
 
-<CardView
-         style={styles.item}>
-                        <Image source={{uri : item.src.portrait}} style={{height : hp('14%'),width : wp('30%'),marginTop:hp('.50'),marginRight:wp('2')}} resizeMode="contain" />
-                              <Text style={{fontSize:hp('1.70'),letterSpacing:wp('.10%'),minWidth:wp('15'),marginTop:hp('2'),fontWeight:'400',color:'black'}}>{item.photographer}</Text>
-             </CardView>
-
-
+           </CardView>
 
          </>
-                              }
+              }
 
-             />
+          />
 
 
 </View>
@@ -71,31 +91,34 @@ const styles = StyleSheet.create({
 
    container:{
       flex:1,
-      backgroundColor :'white'
+      backgroundColor :'gray'
    },
    HeaderView:{
     width:wp('100'),
     height:hp('8'),
-    backgroundColor:'gray',
-    justifyContent:'center',
+    flexDirection:'row',
+    backgroundColor:'black',
+    justifyContent:'space-between',
+    alignItems:'center'
 
 
    },
    item: {
-      height : hp('18%'),
-      width : wp('63%'),
+      height : hp('27%'),
+      width : wp(' 50%'),
       backgroundColor:'white',
-      borderRadius:4,
+      borderRadius:8,
       shadowColor: '#000000',
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.9,
       shadowRadius: 3,
       elevation: 6,
-      flexDirection:'row',
-
-      marginLeft:wp('4%'),
-      marginTop:hp('1%'),
-      marginBottom:hp('1')
+      marginRight:wp('1'),
+      marginLeft: wp('1%'),
+      marginTop:hp('.80%'),
+      marginBottom:hp('.50')
    },
-
+   materialSearch: {
+    marginRight: wp('4')
+ },
 });

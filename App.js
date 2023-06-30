@@ -7,16 +7,14 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
- <NavigationContainer>
+    <NavigationContainer>
         <Stack.Navigator>
-
-     <Stack.Screen
-                     options={{headerShown : false}}
-                     name="Dashboard"
-                     component={Dashboard} />
-
-  </Stack.Navigator>
-    </NavigationContainer>
+           <Stack.Screen
+              options={{headerShown : false}}
+              name="Dashboard"
+              component={Dashboard} />
+           </Stack.Navigator>
+     </NavigationContainer>
   );
 };
 
