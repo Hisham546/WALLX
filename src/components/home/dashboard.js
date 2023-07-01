@@ -64,15 +64,16 @@ return(
              data={data}
              onEndReached={increase} // Triggered when the user reaches the end of the list
              onEndReachedThreshold={0.5}
-             style={{backgroundColor:'gray',width:wp('99')}}
+             style={{backgroundColor:'#2B2730',width:wp('99')}}
              renderItem={({item}) =>
            <>
            <CardView
           cornerRadius={5}
              style={styles.item}>
+              <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("ViewWallpaper",{data:item}) }>
                 <Image source={{uri : item.src.portrait}} style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
                 {/*<Text style={{fontSize:hp('1.70'),letterSpacing:wp('.10%'),minWidth:wp('15'),marginTop:hp('2'),fontWeight:'400',color:'black'}}>{item.photographer}</Text>*/}
-
+                </TouchableOpacity>
            </CardView>
 
          </>
@@ -91,13 +92,13 @@ const styles = StyleSheet.create({
 
    container:{
       flex:1,
-      backgroundColor :'gray'
+      backgroundColor :'#001C30'
    },
    HeaderView:{
     width:wp('100'),
     height:hp('8'),
     flexDirection:'row',
-    backgroundColor:'black',
+    backgroundColor:'##2B2730',
     justifyContent:'space-between',
     alignItems:'center'
 
