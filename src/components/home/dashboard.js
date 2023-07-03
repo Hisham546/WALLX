@@ -54,9 +54,10 @@ return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
       <TouchableOpacity  onPress={() => test()}>
-      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4')}}>WALLX</Text>
+      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
       </TouchableOpacity>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
+           <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -120,6 +121,6 @@ const styles = StyleSheet.create({
       marginBottom:hp('.50')
    },
    materialSearch: {
-    marginRight: wp('4')
+    marginLeft: wp('64')
  },
 });
