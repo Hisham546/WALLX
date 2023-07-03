@@ -30,7 +30,7 @@ import Toast from "react-native-simple-toast";
 import Snackbar from 'react-native-snackbar';
 import RBSheet from "react-native-raw-bottom-sheet";
 
-export default function ViewWallpaper({route}) {
+export default function ViewWallpaper({route,navigation}) {
 
   const actionSheetRef = useRef();
 const wallpaper =route.params.data;
@@ -42,6 +42,10 @@ const applyWallpaper = (image) => {
      NativeModules.MainApplication.setWallpaper(image);
   };
 
+
+const addToFavourites = (image) => {
+     NativeModules.MainApplication.setWallpaper(image);
+  };
 
   const seeInformation = () => {
       actionSheetRef.current.open();
@@ -112,7 +116,7 @@ const applyWallpaper = (image) => {
   };
 
     return(
-<View style={StyleSheet.mainContainer}>
+<View style={styles.mainContainer}>
 
 <ImageBackground source={{uri: wallpaper.src.portrait}} style={{height: hp('100%'), justifyContent: 'flex-end', width: wp('100%')}} resizeMode="cover">
   <View style={styles.iconView}>
@@ -125,7 +129,9 @@ const applyWallpaper = (image) => {
     <TouchableOpacity  onPress={() => applyWallpaper( wallpaper.src.portrait)}>
     <MaterialIcon name="inbox-arrow-up" size={hp('2.65%')} color="white" style={styles.materialSearch} />
     </TouchableOpacity>
-    <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch} 
+      <TouchableOpacity  onPress={() => addToFavourites()}>
+    <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}
+            </TouchableOpacity>
     /*cards-heart*//>
   </View> 
 </ImageBackground> 

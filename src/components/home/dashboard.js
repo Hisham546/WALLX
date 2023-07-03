@@ -57,7 +57,9 @@ return(
       <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
       </TouchableOpacity>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
+          <TouchableOpacity  onPress={() => navigation.navigate('Favourite')}>
            <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
+                 </TouchableOpacity>
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     width:wp('100'),
     height:hp('8'),
     flexDirection:'row',
-    backgroundColor:'##2B2730',
+    backgroundColor:'#2B2730',
     justifyContent:'space-between',
     alignItems:'center'
 
