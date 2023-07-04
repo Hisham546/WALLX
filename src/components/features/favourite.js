@@ -1,4 +1,4 @@
-import React, { useEffect,useRef,useState } from "react";
+import React, { useEffect,useRef,useState,useContext  } from "react";
 
 import {
 View,
@@ -12,7 +12,7 @@ import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {provider,Context} from './src/state/context';
 export default function Favourite({navigation}){
 
  return(

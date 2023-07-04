@@ -1,4 +1,4 @@
-import React, { useEffect,useRef,useState } from "react";
+import React, { useEffect,useRef,useState,useContext } from "react";
 
 import {
 View,
@@ -29,9 +29,9 @@ import {
 import Toast from "react-native-simple-toast";
 import Snackbar from 'react-native-snackbar';
 import RBSheet from "react-native-raw-bottom-sheet";
-
+import { Context } from "../../state/context";
 export default function ViewWallpaper({route,navigation}) {
-
+  const value = useContext(Context);
   const actionSheetRef = useRef();
 const wallpaper =route.params.data;
 const [download,setDownload]=useState( wallpaper.src.portrait);
@@ -130,9 +130,9 @@ const addToFavourites = (image) => {
     <MaterialIcon name="inbox-arrow-up" size={hp('2.65%')} color="white" style={styles.materialSearch} />
     </TouchableOpacity>
       <TouchableOpacity  onPress={() => addToFavourites()}>
-    <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}
+    <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}/>
             </TouchableOpacity>
-    /*cards-heart*//>
+    {/*cards-heart*/}
   </View> 
 </ImageBackground> 
 
