@@ -12,9 +12,10 @@ import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {provider,Context} from './src/state/context';
+import { Context } from "../../state/context";
 export default function Favourite({navigation}){
-
+const { value } = useContext(Context);
+  console.log(value,'wallpaper')
  return(
 
 <View style={styles.mainContainer}>
@@ -26,14 +27,15 @@ export default function Favourite({navigation}){
 
     </View>
 
-     {/* <CardView
+  <CardView
               cornerRadius={5}
                  style={styles.item}>
-                  <TouchableOpacity activeOpacity={1}  }>
-                  {/*  <Image source={{uri : item.src.portrait}} style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
-                    <Text style={{fontSize:hp('1.70'),letterSpacing:wp('.10%'),minWidth:wp('15'),marginTop:hp('2'),fontWeight:'400',color:'black'}}>{item.photographer}</Text>
+                  <TouchableOpacity activeOpacity={1}  >
+                 <Image
+                 source={{uri : value}}
+                  style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
                     </TouchableOpacity>
-               </CardView>*/}
+               </CardView>
 </View>
 
 
@@ -69,6 +71,22 @@ const styles = StyleSheet.create({
 
 
    },
+
+      item: {
+         height : hp('27%'),
+         width : wp(' 50%'),
+         backgroundColor:'white',
+         borderRadius:8,
+         shadowColor: '#000000',
+         shadowOffset: { width: 0, height: 1 },
+         shadowOpacity: 0.9,
+         shadowRadius: 3,
+         elevation: 6,
+         marginRight:wp('1'),
+         marginLeft: wp('1%'),
+         marginTop:hp('.80%'),
+         marginBottom:hp('.50')
+      },
 
 
 })

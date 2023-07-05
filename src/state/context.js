@@ -4,8 +4,12 @@ import { createContext,useState } from 'react';
 
     const Provider =({children}) => {
   const [value,setValue]=useState('');
+
+  const updateValue = (newValue) => {
+      setValue(newValue);
+    };
       return(
-      <Context.Provider value={value}>
+      <Context.Provider value={{value,updateValue}}>
       {children}
       </Context.Provider>
 
@@ -13,4 +17,5 @@ import { createContext,useState } from 'react';
       )
 
     }
+
     export {Context,Provider};

@@ -31,7 +31,8 @@ import Snackbar from 'react-native-snackbar';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Context } from "../../state/context";
 export default function ViewWallpaper({route,navigation}) {
-  const value = useContext(Context);
+
+  const { value, updateValue } = useContext(Context);
   const actionSheetRef = useRef();
 const wallpaper =route.params.data;
 const [download,setDownload]=useState( wallpaper.src.portrait);
@@ -44,7 +45,15 @@ const applyWallpaper = (image) => {
 
 
 const addToFavourites = (image) => {
-     NativeModules.MainApplication.setWallpaper(image);
+ updateValue(image);
+
+ Snackbar.show({
+          text: 'Added to favourites',
+           backgroundColor:'white',
+           textColor:'black',
+          duration: Snackbar.LENGTH_SHORT,
+        });
+
   };
 
   const seeInformation = () => {
@@ -129,7 +138,7 @@ const addToFavourites = (image) => {
     <TouchableOpacity  onPress={() => applyWallpaper( wallpaper.src.portrait)}>
     <MaterialIcon name="inbox-arrow-up" size={hp('2.65%')} color="white" style={styles.materialSearch} />
     </TouchableOpacity>
-      <TouchableOpacity  onPress={() => addToFavourites()}>
+      <TouchableOpacity  onPress={() => addToFavourites( wallpaper.src.portrait)}>
     <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}/>
             </TouchableOpacity>
     {/*cards-heart*/}
