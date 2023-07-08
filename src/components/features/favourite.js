@@ -18,50 +18,45 @@ export default function Favourite({navigation}){
 //const { value } = useContext(Context);
 //  console.log(value,'wallpaper')
 
-    const [data,setData]=useState('');
+    const [favourites,setFavourite]=useState('');
 
        useEffect(() => {
-
           getData()
-
         }, []);
-
 
 
         const getData = async () => {
           try {
-            const value = await AsyncStorage.getItem('favourites');
-                      console.log(value,'wallpaper')
-            if (value !== null) {
-                setData(value.photographer)
+            const favourites = await AsyncStorage.getItem('favourites');
 
+            if (favourites !== null) {
+              const parsedFavourites = JSON.parse(favourites);
+               setFavourite(parsedFavourites.photographer)
             }
           } catch (e) {
             // error reading value
           }
         };
-console.log(data,'........data')
+
  return(
 
-<View style={styles.mainContainer}>
-    <View style={styles.HeaderView}>
-              <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
-               <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
-                 </TouchableOpacity>
-      <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Favourites</Text>
-
-    </View>
-
-  <CardView
-              cornerRadius={5}
-                 style={styles.item}>
-                  <TouchableOpacity activeOpacity={1}  >
+    <View style={styles.mainContainer}>
+       <View style={styles.HeaderView}>
+           <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
+              <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
+           </TouchableOpacity>
+             <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Favourites</Text>
+       </View>
+       <CardView
+            cornerRadius={5}
+            style={styles.item}>
+              <TouchableOpacity activeOpacity={1} >
                  <Image
-                 source={{uri : data}}
-                  style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
-                    </TouchableOpacity>
-               </CardView>
-</View>
+                    source={{uri : favourites}}
+                    style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
+              </TouchableOpacity>
+       </CardView>
+    </View>
 
 
 

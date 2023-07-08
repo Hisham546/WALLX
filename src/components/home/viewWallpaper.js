@@ -45,25 +45,26 @@ const applyWallpaper = (image) => {
   };
 
 
-const addToFavourites = (image) => {
-    const value = {
-          photographer: image,
-        };
- updateValue(value);
- storeFavourite(value)
- Snackbar.show({
-          text: 'Added to favourites',
-           backgroundColor:'white',
-           textColor:'black',
-          duration: Snackbar.LENGTH_SHORT,
-        });
+    const addToFavourites = (image) => {
+        const value = {
+                         photographer: image,
+                     };
 
-  };
-const storeFavourite = async (value) => {
+          updateValue(value);
+          storeFavourite(value)
+         Snackbar.show({
+                   text: 'Added to favourites',
+                   backgroundColor:'white',
+                   textColor:'black',
+                   duration: Snackbar.LENGTH_SHORT,
+                });
+
+    };
+
+    const storeFavourite = async (value) => {
 
   try {
       const jsonValue = JSON.stringify(value)
-      console.log(jsonValue,'.......')
     await AsyncStorage.setItem('favourites', jsonValue);
   } catch (e) {
     // saving error
