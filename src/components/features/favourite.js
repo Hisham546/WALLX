@@ -13,9 +13,34 @@ import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../../state/context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Favourite({navigation}){
-const { value } = useContext(Context);
-  console.log(value,'wallpaper')
+//const { value } = useContext(Context);
+//  console.log(value,'wallpaper')
+
+    const [data,setData]=useState('');
+
+       useEffect(() => {
+
+          getData()
+
+        }, []);
+
+
+
+        const getData = async () => {
+          try {
+            const value = await AsyncStorage.getItem('favourites');
+                      console.log(value,'wallpaper')
+            if (value !== null) {
+                setData(value.photographer)
+
+            }
+          } catch (e) {
+            // error reading value
+          }
+        };
+console.log(data,'........data')
  return(
 
 <View style={styles.mainContainer}>
@@ -32,7 +57,7 @@ const { value } = useContext(Context);
                  style={styles.item}>
                   <TouchableOpacity activeOpacity={1}  >
                  <Image
-                 source={{uri : value}}
+                 source={{uri : data}}
                   style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
                     </TouchableOpacity>
                </CardView>
