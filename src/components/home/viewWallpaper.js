@@ -47,8 +47,8 @@ const applyWallpaper = (image) => {
 
     const addToFavourites = (image) => {
         const value = {
-                         photographer: image,
-                     };
+                     photographer: image,
+                };
 
           updateValue(value);
           storeFavourite(value)
@@ -60,6 +60,8 @@ const applyWallpaper = (image) => {
                 });
 
     };
+
+
 
     const storeFavourite = async (value) => {
 

@@ -15,8 +15,8 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../../state/context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Favourite({navigation}){
-//const { value } = useContext(Context);
-//  console.log(value,'wallpaper')
+const { value } = useContext(Context);
+
 
     const [favourites,setFavourite]=useState('');
 
@@ -37,7 +37,7 @@ export default function Favourite({navigation}){
             // error reading value
           }
         };
-
+         console.log(favourites,'..................nu........')
  return(
 
     <View style={styles.mainContainer}>
@@ -47,6 +47,7 @@ export default function Favourite({navigation}){
            </TouchableOpacity>
              <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Favourites</Text>
        </View>
+       { favourites != '' ?
        <CardView
             cornerRadius={5}
             style={styles.item}>
@@ -56,6 +57,13 @@ export default function Favourite({navigation}){
                     style={{height : hp('27%'),borderRadius:5,width : wp('90%')}} resizeMode="cover" />
               </TouchableOpacity>
        </CardView>
+       :
+             <View style={{width:wp('100'),height:hp('100'),justifyContent:'center',alignItems:'center'}}>
+                     <MaterialIcon name="heart-off" size={hp('6.20%')} color="white"/>
+           <Text style={{color:'white',fontSize:hp('2'),marginTop:hp('3'),fontFamily:'Manrope-Bold'}}>No Favourites</Text>
+</View>
+
+       }
     </View>
 
 
