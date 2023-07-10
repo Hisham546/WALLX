@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
 
     mainContainer:{
         flex:1,
-        backgroundColor :'#2B2730'
+        backgroundColor :'#080202'
      },
    HeaderView:{
     width:wp('100'),
     height:hp('8'),
     flexDirection:'row',
-    backgroundColor:'#2B2730',
+    backgroundColor:'#080202',
     alignItems:'center'
 
 
