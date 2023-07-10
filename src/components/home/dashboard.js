@@ -14,6 +14,7 @@ import axios from 'axios';
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+  import { Dropdown } from 'react-native-element-dropdown';
  export default function Dashboard({navigation}){
 
    const [data,setData] = useState([]);
@@ -24,6 +25,17 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
       setIncrement(prevIncrement => prevIncrement + 1);
 
      }
+
+      const dropdownData = [
+         { label: 'Item 1', value: '1' },
+         { label: 'Item 2', value: '2' },
+         { label: 'Item 3', value: '3' },
+         { label: 'Item 4', value: '4' },
+         { label: 'Item 5', value: '5' },
+         { label: 'Item 6', value: '6' },
+         { label: 'Item 7', value: '7' },
+         { label: 'Item 8', value: '8' },
+       ];
 
    useFocusEffect(
       React.useCallback(() => {
@@ -49,17 +61,35 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 //    ` https://api.pexels.com/v1/curated/?page=${i}&per_page=15`
 // }
 //     }
-
+console.log(data)
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
-      <TouchableOpacity  onPress={() => test()}>
+      <TouchableOpacity>
       <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
       </TouchableOpacity>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
           <TouchableOpacity  onPress={() => navigation.navigate('Favourite')}>
            <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
                  </TouchableOpacity>
+       <Dropdown
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={dropdownData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="Select item"
+              searchPlaceholder="Search..."
+
+              onChange={item => {
+                setValue(item.value);
+              }}
+            />
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
