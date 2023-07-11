@@ -76,13 +76,14 @@ return(
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
          <Menu
                visible={visible}
+               style ={styles.menuStyle}
                 anchor={ <TouchableOpacity activeOpacity={1} onPress={showMenu}>
                             <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
                           </TouchableOpacity>}
                 onRequestClose={hideMenu}>
 
-                <MenuItem textStyle ={{color:'black',fontFamily:'Manrope-Medium'}} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
-                <MenuItem  textStyle ={{color:'black',fontFamily:'Manrope-Medium'}} onPress={hideMenu}>About</MenuItem>
+                <MenuItem textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
+                <MenuItem  textStyle ={styles.menuTextStyle} onPress={hideMenu}>About</MenuItem>
 
           </Menu>
     </View>
@@ -150,5 +151,15 @@ const styles = StyleSheet.create({
    materialSearch: {
     marginLeft: wp('64')
  },
+ menuStyle:{
+       backgroundColor :'#080202'
+
+ },
+ menuTextStyle:{
+ color:'white',
+ fontSize:hp('1.50'),
+ fontFamily:'Manrope-Regular'
+
+ }
 
 });
