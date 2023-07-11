@@ -15,11 +15,16 @@ import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
   import { Dropdown } from 'react-native-element-dropdown';
+  import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
  export default function Dashboard({navigation}){
 
    const [data,setData] = useState([]);
    const [increment ,setIncrement]=useState(0);
+  const [visible, setVisible] = useState(false);
 
+  const hideMenu = () => setVisible(false);
+
+  const showMenu = () => setVisible(true);
      const increase = () => {
        
       setIncrement(prevIncrement => prevIncrement + 1);
@@ -69,24 +74,17 @@ return(
       <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
       </TouchableOpacity>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
-         {/* <TouchableOpacity  onPress={() => navigation.navigate('Favourite')}>
-           <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
-                 </TouchableOpacity>*/}
-       <Dropdown
-              style={styles.dropdown}
+         <Menu
+               visible={visible}
+                anchor={ <TouchableOpacity activeOpacity={1} onPress={showMenu}>
+                            <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
+                          </TouchableOpacity>}
+                onRequestClose={hideMenu}>
 
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={dropdownData}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              onChange={item => {
-                setValue(item.value);
-              }}
-            />
+                <MenuItem textStyle ={{color:'black',fontFamily:'Manrope-Medium'}} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
+                <MenuItem  textStyle ={{color:'black',fontFamily:'Manrope-Medium'}} onPress={hideMenu}>About</MenuItem>
+
+          </Menu>
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -152,14 +150,5 @@ const styles = StyleSheet.create({
    materialSearch: {
     marginLeft: wp('64')
  },
-  dropdown:{
-    height: hp('3.4%'),
-    width: wp('35%'),
-    backgroundColor: '#e9e7f2',
-    alignSelf: 'flex-end',
-    marginRight: wp('4%'),
-    paddingLeft: wp('2%'),
-    // borderWidth:wp('.1'),
-    borderRadius: wp('.60'),
-    }
+
 });
