@@ -14,15 +14,15 @@ import axios from 'axios';
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-  import { Dropdown } from 'react-native-element-dropdown';
-  import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
+ import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
+
  export default function Dashboard({navigation}){
 
    const [data,setData] = useState([]);
    const [increment ,setIncrement]=useState(0);
   const [visible, setVisible] = useState(false);
 
-  const hideMenu = () => setVisible(false);
+
 
   const showMenu = () => setVisible(true);
      const increase = () => {
@@ -31,27 +31,15 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
      }
 
-      const dropdownData = [
-         { label: 'Item 1', value: '1' },
-         { label: 'Item 2', value: '2' },
-         { label: 'Item 3', value: '3' },
-         { label: 'Item 4', value: '4' },
-         { label: 'Item 5', value: '5' },
-         { label: 'Item 6', value: '6' },
-         { label: 'Item 7', value: '7' },
-         { label: 'Item 8', value: '8' },
-       ];
 
    useFocusEffect(
       React.useCallback(() => {
+         api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=20`)
 
-        api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=20`,qs.stringify({
-
-      }))
-        .then(function (response) {
-          setData(response.data.photos)
+          .then(function (response) {
+               setData(response.data.photos)
            })
-            .catch(function (error) {
+             .catch(function (error) {
            });
 
      },[increment])
@@ -76,15 +64,13 @@ return(
          <Menu
                visible={visible}
                style ={styles.menuStyle}
-                anchor={ <TouchableOpacity activeOpacity={1} onPress={showMenu}>
-                            <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
-                          </TouchableOpacity>}
-                onRequestClose={hideMenu}>
-
+                anchor={
+                <TouchableOpacity activeOpacity={1} onPress={showMenu}>
+                   <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
+                 </TouchableOpacity>}>
                 <MenuItem textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
-                                <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Settings')}>Settings</MenuItem>
+                 <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Settings')}>Settings</MenuItem>
                 <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('About')}>About</MenuItem>
-
           </Menu>
     </View>
       <FlatList
@@ -92,7 +78,7 @@ return(
         numColumns={2}
              data={data}
              onEndReached={increase} // Triggered when the user reaches the end of the list
-             onEndReachedThreshold={0.5}
+             onEndReachedThreshold={0.2}
              style={{backgroundColor:'#080202',width:wp('99')}}
              renderItem={({item}) =>
            <>
