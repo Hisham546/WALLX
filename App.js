@@ -4,6 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Dashboard from './src/components/home/dashboard';
 import ViewWallpaper from './src/components/home/viewWallpaper';
 import Favourite from './src/components/features/favourite';
+import Settings from './src/components/other/settings';
+import About from './src/components/other/about';
 import {Provider} from './src/state/context';
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +26,14 @@ const App = () => {
                 options={{headerShown : false}}
                 name="Favourite"
                 component={Favourite} />
+          <Stack.Screen
+                options={{headerShown : false}}
+                name="Settings"
+                component={Settings} />
+          <Stack.Screen
+                options={{headerShown : false}}
+                name="About"
+                component={About} />
            </Stack.Navigator>        
      </NavigationContainer>
        </Provider>

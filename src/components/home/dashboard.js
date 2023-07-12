@@ -83,7 +83,8 @@ return(
                 onRequestClose={hideMenu}>
 
                 <MenuItem textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
-                <MenuItem  textStyle ={styles.menuTextStyle} onPress={hideMenu}>About</MenuItem>
+                                <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Settings')}>Settings</MenuItem>
+                <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('About')}>About</MenuItem>
 
           </Menu>
     </View>
@@ -152,7 +153,8 @@ const styles = StyleSheet.create({
     marginLeft: wp('64')
  },
  menuStyle:{
-       backgroundColor :'#080202'
+       backgroundColor :'#080202',
+       marginLeft:wp('.85')
 
  },
  menuTextStyle:{
