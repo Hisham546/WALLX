@@ -31,6 +31,7 @@ import Snackbar from 'react-native-snackbar';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Context } from "../../state/context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import WallPaperManager from "react-native-set-wallpaper";
 export default function ViewWallpaper({route,navigation}) {
 
   const { value, updateValue } = useContext(Context);
@@ -40,9 +41,17 @@ const [download,setDownload]=useState( wallpaper.src.portrait);
 const [loading,setLoading]=useState(false);
 //console.log(wallpaper)
 
-const applyWallpaper = (image) => {
-     NativeModules.MainApplication.setWallpaper(image);
-  };
+    const applyWallpaper = (image) => {
+        WallPaperManager.setWallpaper({ uri:image }, (res) => {
+       //   console.log(res);
+            Snackbar.show({
+                     text: 'Wallpaper applied successfully !',
+                     backgroundColor:'white',
+                     textColor:'black',
+                     duration: Snackbar.LENGTH_SHORT,
+                     });
+        });
+      };
 
 
     const addToFavourites = (image) => {

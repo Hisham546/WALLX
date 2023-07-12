@@ -66,7 +66,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 //    ` https://api.pexels.com/v1/curated/?page=${i}&per_page=15`
 // }
 //     }
-console.log(data)
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>

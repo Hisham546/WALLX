@@ -27,6 +27,12 @@ return(
              <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>About</Text>
        </View>
 
+   <View style={styles.firstView}>
+         <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
+
+               <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>by</Text>
+   </View>
+
  </View>
 
 
@@ -51,7 +57,12 @@ const styles= StyleSheet.create({
     backgroundColor:'#080202',
     alignItems:'center'
 
-
    },
+  firstView:{
+  width:wp('100'),
+  height:hp('10'),
+
+
+  }
 
 })
