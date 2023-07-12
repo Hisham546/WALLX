@@ -28,9 +28,10 @@ return(
        </View>
 
    <View style={styles.firstView}>
-         <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
+         <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
 
-               <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>by</Text>
+               <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>by</Text>
+                   <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>Hisham</Text>
    </View>
 
  </View>
@@ -59,8 +60,11 @@ const styles= StyleSheet.create({
 
    },
   firstView:{
+  marginTop:hp('15'),
   width:wp('100'),
-  height:hp('10'),
+  height:hp('30'),
+  justifyContent:'center',
+  alignItems:'center'
 
 
   }

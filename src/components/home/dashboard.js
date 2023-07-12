@@ -21,10 +21,13 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
    const [data,setData] = useState([]);
    const [increment ,setIncrement]=useState(0);
   const [visible, setVisible] = useState(false);
+  const [nextPage,setNextPage] = useState(false);
 
 
 
   const showMenu = () => setVisible(true);
+
+
      const increase = () => {
        
       setIncrement(prevIncrement => prevIncrement + 1);
@@ -44,16 +47,13 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
      },[increment])
     );
-//     const test=()=>{
-
-// var total = 8000
-// var pageSize = 1000
-
-// for (var i=1;i<(total/pageSize +1); i++){
-//     console.log(i)
-//    ` https://api.pexels.com/v1/curated/?page=${i}&per_page=15`
-// }
-//     }
+    handleShow = (event) => {
+        if (event.nativeEvent.contentOffset.y > 10 * hp('50')) {
+              setNextPage(true);
+        } else {
+            setNextPage(false);
+        }
+    }
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
@@ -75,7 +75,7 @@ return(
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
-        numColumns={2}
+             numColumns={2}
              data={data}
              onEndReached={increase} // Triggered when the user reaches the end of the list
              onEndReachedThreshold={0.2}
