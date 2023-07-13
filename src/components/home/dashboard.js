@@ -14,8 +14,14 @@ import axios from 'axios';
 import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
- import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 
+import Search from 'react-native-search-box';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
  export default function Dashboard({navigation}){
 
    const [data,setData] = useState([]);
@@ -61,7 +67,8 @@ return(
       <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
       </TouchableOpacity>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
-         <Menu
+
+        {/* <Menu
                visible={visible}
                style ={styles.menuStyle}
                 anchor={
@@ -71,7 +78,24 @@ return(
                 <MenuItem textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
                  <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Settings')}>Settings</MenuItem>
                 <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('About')}>About</MenuItem>
-          </Menu>
+          </Menu>*/}
+  <Menu>
+   <MenuTrigger
+       customStyles={{ triggerWrapper: { marginRight: 3 } }}>
+          <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" />
+      </MenuTrigger>
+       <MenuOptions style ={styles.menuStyle}>
+         <MenuOption onSelect={() => navigation.navigate('Favourite')} >
+              <Text style={styles.menuTextStyle}>Favourites</Text>
+          </MenuOption>
+          <MenuOption onSelect={() => navigation.navigate('Settings')} >
+           <Text style={styles.menuTextStyle}>Settings</Text>
+          </MenuOption>
+          <MenuOption onSelect={() => navigation.navigate('About')} >
+           <Text style={styles.menuTextStyle}>About</Text>
+         </MenuOption>
+       </MenuOptions>
+  </Menu>
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -138,12 +162,13 @@ const styles = StyleSheet.create({
     marginLeft: wp('64')
  },
  menuStyle:{
-       backgroundColor :'#080202',
-       marginLeft:wp('.85')
+       backgroundColor :'white',
+       marginLeft:wp('.85'),
+       width:wp('17')
 
  },
  menuTextStyle:{
- color:'white',
+ color:'black',
  fontSize:hp('1.50'),
  fontFamily:'Manrope-Regular'
 

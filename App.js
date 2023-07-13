@@ -7,10 +7,12 @@ import Favourite from './src/components/features/favourite';
 import Settings from './src/components/other/settings';
 import About from './src/components/other/about';
 import {Provider} from './src/state/context';
+import { MenuProvider } from 'react-native-popup-menu';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
+    <MenuProvider>
      <Provider>
     <NavigationContainer>
         <Stack.Navigator>
@@ -37,6 +39,7 @@ const App = () => {
            </Stack.Navigator>        
      </NavigationContainer>
        </Provider>
+    </MenuProvider>
   );
 };
 
