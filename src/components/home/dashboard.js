@@ -22,7 +22,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
- export default function Dashboard({navigation}){
+ export default function Dashboard({ navigation: { goBack }, navigation}){
 
    const [data,setData] = useState([]);
       const [searchData,setSearchData] = useState([]);
@@ -81,30 +81,29 @@ import {
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
-
-     {/* <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
-
-     <TouchableOpacity onPress{() => initiateSearch() }>
+     {pressedSearch != true ?
+      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
+   :null}
+  {pressedSearch != true ?
+     <TouchableOpacity onPress={() =>     setPressedSearch(true) }>
       <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
-       </TouchableOpacity>  */}
- <TextInput
+       </TouchableOpacity>
+       :null}
+
+      {pressedSearch === true ?
+                   <View style={styles.searchView}>
+                  <TouchableOpacity onPress={() =>  setPressedSearch(false) }>
+                      <MaterialIcon name="arrow-left" size={hp('2.50%')} color="black" style={styles.materialSearch} />
+                  </TouchableOpacity>
+               <TextInput
                   style={styles.searchProducts}
                   onChangeText={text => onSearch(text)}
                   value={filteredData}
                   placeholderTextColor={'gray'}
                   placeholder={'search wallpapers'}
                />
-        {/* <Menu
-               visible={visible}
-               style ={styles.menuStyle}
-                anchor={
-                <TouchableOpacity activeOpacity={1} onPress={showMenu}>
-                   <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" style={{marginRight: wp('3')}} />
-                 </TouchableOpacity>}>
-                <MenuItem textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Favourite')}>Favourites</MenuItem>
-                 <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('Settings')}>Settings</MenuItem>
-                <MenuItem  textStyle ={styles.menuTextStyle} onPress={() => navigation.navigate('About')}>About</MenuItem>
-          </Menu>*/}
+               </View>
+             :null}
   <Menu>
    <MenuTrigger
        customStyles={{ triggerWrapper: { marginRight: 3 } }}>
@@ -206,5 +205,20 @@ const styles = StyleSheet.create({
        fontSize: hp('1.60'),
        fontFamily: 'Manrope-Regular-Regular'
     },
-
+     searchView: {
+        height: hp('6%'),
+        width: wp('90%'),
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        elevation: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        elevation: 5,
+     },
+   materialSearch: {
+      marginLeft: wp('4')
+   },
 });
