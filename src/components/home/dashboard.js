@@ -25,8 +25,8 @@ import {
  export default function Dashboard({ navigation: { goBack }, navigation}){
 
    const [data,setData] = useState([]);
-      const [searchData,setSearchData] = useState([]);
-      const [filteredData,setFilteredData] = useState([]);
+      const [searchData,setSearchData] = useState('');
+      const [filteredData,setFilteredData] = useState('');
    const [pressedSearch,setPressedSearch]= useState(false);
    const [increment ,setIncrement]=useState(0);
   const [visible, setVisible] = useState(false);
@@ -65,36 +65,37 @@ import {
     }
 
     const  onSearch = (searchQuery) => {
-         api.get(`https://api.pexels.com/v1/search?query=${searchQuery}&per_page=20`)
+         setFilteredData(searchQuery)
+         api.get(`https://api.pexels.com/v1/search?query=${searchQuery}&per_page=5`)
           .then(function (response) {
-               setFilteredData(searchQuery)
+
                setSearchData(response.data.photos)
            })
              .catch(function (error) {
            });
     }
-    const initiateSearch = () => {
-    setPressedSearch(true)
+    function resetSearch(){
 
+    setFilteredData('')
+     setPressedSearch(false)
 
     }
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
      {pressedSearch != true ?
-      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
-   :null}
-  {pressedSearch != true ?
-     <TouchableOpacity onPress={() =>     setPressedSearch(true) }>
-      <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
-       </TouchableOpacity>
-       :null}
-
+        <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
+      :null}
+      {pressedSearch != true ?
+        <TouchableOpacity activeOpacity={1} style={{marginLeft:wp('50')}} onPress={() => setPressedSearch(true) }>
+         <MaterialIcon name="magnify" size={hp('2.50%')} color="white"  />
+        </TouchableOpacity>
+      :null}
       {pressedSearch === true ?
-                   <View style={styles.searchView}>
-                  <TouchableOpacity onPress={() =>  setPressedSearch(false) }>
-                      <MaterialIcon name="arrow-left" size={hp('2.50%')} color="black" style={styles.materialSearch} />
-                  </TouchableOpacity>
+          <View style={styles.searchView}>
+             <TouchableOpacity activeOpacity={1} onPress={() => resetSearch()  }>
+                 <MaterialIcon name="arrow-left" size={hp('2.50%')} color="black" style={styles.materialSearch} />
+             </TouchableOpacity>
                <TextInput
                   style={styles.searchProducts}
                   onChangeText={text => onSearch(text)}
@@ -102,8 +103,8 @@ return(
                   placeholderTextColor={'gray'}
                   placeholder={'search wallpapers'}
                />
-               </View>
-             :null}
+          </View>
+      :null}
   <Menu>
    <MenuTrigger
        customStyles={{ triggerWrapper: { marginRight: 3 } }}>
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
       marginBottom:hp('.50')
    },
    materialSearch: {
-    marginLeft: wp('64')
+    marginLeft: wp('84')
  },
  menuStyle:{
        backgroundColor :'white',
@@ -206,17 +207,17 @@ const styles = StyleSheet.create({
        fontFamily: 'Manrope-Regular-Regular'
     },
      searchView: {
-        height: hp('6%'),
+        height: hp('5%'),
         width: wp('90%'),
-        backgroundColor: 'white',
+        backgroundColor: '#E8F6EF',
         shadowColor: '#000',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.4,
         shadowRadius: 3,
         elevation: 5,
+        borderRadius:5,
         flexDirection: 'row',
         alignItems: 'center',
-        elevation: 5,
      },
    materialSearch: {
       marginLeft: wp('4')
