@@ -91,30 +91,27 @@ const styles = StyleSheet.create({
         backgroundColor :'#080202'
      },
    HeaderView:{
-    width:wp('100'),
-    height:hp('8'),
-    flexDirection:'row',
-    backgroundColor:'#080202',
-    alignItems:'center'
-
-
+        width:wp('100'),
+        height:hp('8'),
+        flexDirection:'row',
+        backgroundColor:'#080202',
+        alignItems:'center'
    },
-
-      item: {
-         height : hp('27%'),
-         width : wp(' 50%'),
-         backgroundColor:'white',
-         borderRadius:8,
-         shadowColor: '#000000',
-         shadowOffset: { width: 0, height: 1 },
-         shadowOpacity: 0.9,
-         shadowRadius: 3,
-         elevation: 6,
-         marginRight:wp('1'),
-         marginLeft: wp('1%'),
-         marginTop:hp('.80%'),
-         marginBottom:hp('.50')
-      },
+  item: {
+     height : hp('27%'),
+     width : wp(' 50%'),
+     backgroundColor:'white',
+     borderRadius:8,
+     shadowColor: '#000000',
+     shadowOffset: { width: 0, height: 1 },
+     shadowOpacity: 0.9,
+     shadowRadius: 3,
+     elevation: 6,
+     marginRight:wp('1'),
+     marginLeft: wp('1%'),
+     marginTop:hp('.80%'),
+     marginBottom:hp('.50')
+  },
 
 
 })

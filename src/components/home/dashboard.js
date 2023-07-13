@@ -46,7 +46,7 @@ import {
 
    useFocusEffect(
       React.useCallback(() => {
-         api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=20`)
+         api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
 
           .then(function (response) {
                setData(response.data.photos)

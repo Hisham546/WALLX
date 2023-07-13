@@ -152,22 +152,28 @@ const [loading,setLoading]=useState(false);
     return(
 <View style={styles.mainContainer}>
 
-<ImageBackground source={{uri: wallpaper.src.portrait}} style={{height: hp('100%'), justifyContent: 'flex-end', width: wp('100%')}} resizeMode="cover">
-  <View style={styles.iconView}>
-  <TouchableOpacity  onPress={() => seeInformation()}>
-    <MaterialIcon name="information-outline" size={hp('2.65%')} color="white" style={styles.materialSearch} />
-    </TouchableOpacity>
-  <TouchableOpacity  onPress={() => checkPermission()}>
-    <MaterialIcon name="arrow-collapse-down" size={hp('2.65%')} color="white" style={styles.materialSearch} />
+    <ImageBackground source={{uri: wallpaper.src.portrait}} style={{height: hp('100%'), justifyContent: 'space-between', width: wp('100%')}} resizeMode="cover">
+    <View style={{width:wp('100'),height:hp('7'),alignItems:'center',flexDirection:'row'}}>
+      <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
+            <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
+       </TouchableOpacity>
+         <Text style={{ fontSize: hp('1.90'),color:'white',marginLeft:wp('3'),fontFamily: 'Manrope-Medium'}}>{wallpaper.alt}</Text>
+    </View>
+      <View style={styles.iconView}>
+      <TouchableOpacity  onPress={() => seeInformation()}>
+        <MaterialIcon name="information-outline" size={hp('2.65%')} color="white" style={styles.materialSearch} />
         </TouchableOpacity>
-    <TouchableOpacity  onPress={() => applyWallpaper( wallpaper.src.portrait)}>
-    <MaterialIcon name="inbox-arrow-up" size={hp('2.65%')} color="white" style={styles.materialSearch} />
-    </TouchableOpacity>
-      <TouchableOpacity  onPress={() => addToFavourites( wallpaper.src.portrait)}>
-    <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}/>
+      <TouchableOpacity  onPress={() => checkPermission()}>
+        <MaterialIcon name="arrow-collapse-down" size={hp('2.65%')} color="white" style={styles.materialSearch} />
             </TouchableOpacity>
-    {/*cards-heart*/}
-  </View> 
+        <TouchableOpacity  onPress={() => applyWallpaper( wallpaper.src.portrait)}>
+        <MaterialIcon name="inbox-arrow-up" size={hp('2.65%')} color="white" style={styles.materialSearch} />
+        </TouchableOpacity>
+          <TouchableOpacity  onPress={() => addToFavourites( wallpaper.src.portrait)}>
+        <MaterialIcon name="cards-heart-outline" size={hp('2.65%')} color="white" style={styles.materialSearch}/>
+                </TouchableOpacity>
+        {/*cards-heart*/}
+      </View>
 </ImageBackground> 
 
  <RBSheet
