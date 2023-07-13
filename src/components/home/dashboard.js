@@ -25,6 +25,9 @@ import {
  export default function Dashboard({navigation}){
 
    const [data,setData] = useState([]);
+      const [searchData,setSearchData] = useState([]);
+      const [filteredData,setFilteredData] = useState([]);
+   const [pressedSearch,setPressedSearch]= useState(false);
    const [increment ,setIncrement]=useState(0);
   const [visible, setVisible] = useState(false);
   const [nextPage,setNextPage] = useState(false);
@@ -60,14 +63,37 @@ import {
             setNextPage(false);
         }
     }
+
+    const  onSearch = (searchQuery) => {
+         api.get(`https://api.pexels.com/v1/search?query=${searchQuery}&per_page=20`)
+          .then(function (response) {
+               setFilteredData(searchQuery)
+               setSearchData(response.data.photos)
+           })
+             .catch(function (error) {
+           });
+    }
+    const initiateSearch = () => {
+    setPressedSearch(true)
+
+
+    }
 return(
     <View style={styles.container}>
     <View style={styles.HeaderView}>
-      <TouchableOpacity>
-      <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
-      </TouchableOpacity>
-      <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
 
+     {/* <Text style={{color:'white',fontSize:hp('1.60'),marginLeft:wp('4'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
+
+     <TouchableOpacity onPress{() => initiateSearch() }>
+      <MaterialIcon name="magnify" size={hp('2.50%')} color="white" style={styles.materialSearch} />
+       </TouchableOpacity>  */}
+ <TextInput
+                  style={styles.searchProducts}
+                  onChangeText={text => onSearch(text)}
+                  value={filteredData}
+                  placeholderTextColor={'gray'}
+                  placeholder={'search wallpapers'}
+               />
         {/* <Menu
                visible={visible}
                style ={styles.menuStyle}
@@ -100,7 +126,7 @@ return(
       <FlatList
              showsVerticalScrollIndicator={false}
              numColumns={2}
-             data={data}
+             data={filteredData.length > 0 ? searchData : data}
              onEndReached={increase} // Triggered when the user reaches the end of the list
              onEndReachedThreshold={0.2}
              style={{backgroundColor:'#080202',width:wp('99')}}
@@ -172,6 +198,13 @@ const styles = StyleSheet.create({
  fontSize:hp('1.50'),
  fontFamily:'Manrope-Regular'
 
- }
+ },
+    searchProducts: {
+       color: 'black',
+       width: wp('95'),
+       marginLeft: wp('3'),
+       fontSize: hp('1.60'),
+       fontFamily: 'Manrope-Regular-Regular'
+    },
 
 });
