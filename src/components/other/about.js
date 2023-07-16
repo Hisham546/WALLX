@@ -30,8 +30,8 @@ return(
    <View style={styles.firstView}>
          <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>WALLX</Text>
 
-               <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>by</Text>
-                   <Text style={{color:'white',fontSize:hp('2'),fontFamily:'Manrope-Bold'}}>Hisham</Text>
+               <Text style={{color:'white',fontSize:hp('2'),marginTop:hp('2'),fontFamily:'Manrope-Bold'}}>Developed by</Text>
+                   <Text style={{color:'white',fontSize:hp('2'),marginTop:hp('2'),fontFamily:'Manrope-Bold'}}>Hisham</Text>
    </View>
 
  </View>

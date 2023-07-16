@@ -154,8 +154,8 @@ const [loading,setLoading]=useState(false);
 
     <ImageBackground source={{uri: wallpaper.src.portrait}} style={{height: hp('100%'), justifyContent: 'space-between', width: wp('100%')}} resizeMode="cover">
     <View style={{width:wp('100'),height:hp('7'),alignItems:'center',flexDirection:'row'}}>
-      <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
-            <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
+      <TouchableOpacity style={{marginLeft:wp('3.9'),width:wp('8'),justifyContent:'center',height:hp('4')}} onPress={() => navigation.navigate('Dashboard')}>
+            <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white"  />
        </TouchableOpacity>
          {/*<Text style={{ fontSize: hp('1.90'),color:'white',marginLeft:wp('3'),fontFamily: 'Manrope-Medium'}}>{wallpaper.alt}</Text>*/}
     </View>
