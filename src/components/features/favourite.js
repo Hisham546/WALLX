@@ -37,7 +37,7 @@ const { value } = useContext(Context);
             // error reading value
           }
         };
-         console.log(favourites,'..................nu........')
+     //    console.log(favourites,'..................nu........')
  return(
 
     <View style={styles.mainContainer}>

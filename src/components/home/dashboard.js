@@ -16,12 +16,13 @@ import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Search from 'react-native-search-box';
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
+//import {
+//  Menu,
+//  MenuOptions,
+//  MenuOption,
+//  MenuTrigger,
+//} from 'react-native-popup-menu';
+  import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
  export default function Dashboard({ navigation: { goBack }, navigation}){
 
    const [data,setData] = useState([]);
@@ -29,10 +30,30 @@ import {
       const [filteredData,setFilteredData] = useState('');
    const [pressedSearch,setPressedSearch]= useState(false);
    const [increment ,setIncrement]=useState(0);
-  const [visible, setVisible] = useState(false);
+
   const [nextPage,setNextPage] = useState(false);
 
 
+  const [visible, setVisible] = useState(false);
+
+  const hideMenu = () => setVisible(false);
+
+
+   function dropdownCheck(number) {
+       if(number == '1'){
+           navigation.navigate('Favourite')
+           setVisible(false);
+       }
+       else if(number == '2'){
+            navigation.navigate('Settings')
+            setVisible(false);
+         }
+         else {
+            navigation.navigate('About')
+            setVisible(false);
+        }
+
+   }
 
   const showMenu = () => setVisible(true);
 
@@ -105,7 +126,7 @@ return(
                />
           </View>
       :null}
-  <Menu>
+  {/*<Menu>
    <MenuTrigger
        customStyles={{ triggerWrapper: { marginRight: 3 } }}>
           <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" />
@@ -121,7 +142,20 @@ return(
            <Text style={styles.menuTextStyle}>About</Text>
          </MenuOption>
        </MenuOptions>
-  </Menu>
+  </Menu>*/}
+               <Menu
+                    visible={visible}
+                    style ={styles.menuStyle}
+                    anchor={
+                            <TouchableOpacity activeOpacity={1} onPress={showMenu}>
+                              <MaterialIcon name={'dots-vertical'} size={hp('2.50%')} color={'white'}  style={{marginRight:wp('3')}} />
+                            </TouchableOpacity>
+                           }
+                    onRequestClose={hideMenu}>
+                     <MenuItem textStyle ={styles.menuTextStyle} onPress={() => dropdownCheck('1')}>Favourites</MenuItem>
+                        <MenuItem  textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('2')}>Settings</MenuItem>
+                       <MenuItem textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('3')}>About</MenuItem>
+               </Menu>
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -180,7 +214,7 @@ const styles = StyleSheet.create({
       shadowRadius: 3,
       elevation: 6,
       marginRight:wp('1'),
-      marginLeft: wp('1%'),
+
       marginTop:hp('.80%'),
       marginBottom:hp('.50')
    },
@@ -190,7 +224,8 @@ const styles = StyleSheet.create({
  menuStyle:{
        backgroundColor :'white',
        marginLeft:wp('.85'),
-       width:wp('17')
+
+       width:wp('35')
 
  },
  menuTextStyle:{

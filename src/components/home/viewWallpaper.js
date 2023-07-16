@@ -157,7 +157,7 @@ const [loading,setLoading]=useState(false);
       <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
             <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
        </TouchableOpacity>
-         <Text style={{ fontSize: hp('1.90'),color:'white',marginLeft:wp('3'),fontFamily: 'Manrope-Medium'}}>{wallpaper.alt}</Text>
+         {/*<Text style={{ fontSize: hp('1.90'),color:'white',marginLeft:wp('3'),fontFamily: 'Manrope-Medium'}}>{wallpaper.alt}</Text>*/}
     </View>
       <View style={styles.iconView}>
       <TouchableOpacity  onPress={() => seeInformation()}>
