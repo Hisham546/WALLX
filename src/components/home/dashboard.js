@@ -147,8 +147,8 @@ return(
                     visible={visible}
                     style ={styles.menuStyle}
                     anchor={
-                            <TouchableOpacity activeOpacity={1} onPress={showMenu}>
-                              <MaterialIcon name={'dots-vertical'} size={hp('2.50%')} color={'white'}  style={{marginRight:wp('3')}} />
+                            <TouchableOpacity activeOpacity={1}  style={{marginRight:wp('2'),width:wp('8'),justifyContent:'center',alignItems:'center',height:hp('5')}} onPress={showMenu}>
+                              <MaterialIcon name={'dots-vertical'} size={hp('2.50%')} color={'white'}   />
                             </TouchableOpacity>
                            }
                     onRequestClose={hideMenu}>
