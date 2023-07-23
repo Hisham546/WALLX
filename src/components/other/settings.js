@@ -26,6 +26,9 @@ return(
            </TouchableOpacity>
              <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Settings</Text>
        </View>
+       <View style ={styles.contentView}>
+         <Text style={{color:'green',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Medium'}}>APPEARANCE</Text>
+       </View>
 
  </View>
 
@@ -51,7 +54,15 @@ const styles= StyleSheet.create({
     backgroundColor:'#080202',
     alignItems:'center'
 
-
    },
+   contentView:{
+   width:wp('100'),
+   height:hp('80'),
+   borderBottomWidth:wp('.3'),
+     borderTopWidth:wp('.3'),
+   borderColor:'gray'
+
+
+   }
 
 })
