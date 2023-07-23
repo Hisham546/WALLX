@@ -23,11 +23,13 @@ import Search from 'react-native-search-box';
 //  MenuTrigger,
 //} from 'react-native-popup-menu';
   import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
+
+
  export default function Dashboard({ navigation: { goBack }, navigation}){
 
    const [data,setData] = useState([]);
-      const [searchData,setSearchData] = useState('');
-      const [filteredData,setFilteredData] = useState('');
+   const [searchData,setSearchData] = useState('');
+   const [filteredData,setFilteredData] = useState('');
    const [pressedSearch,setPressedSearch]= useState(false);
    const [increment ,setIncrement]=useState(0);
 
@@ -77,13 +79,13 @@ import Search from 'react-native-search-box';
 
      },[increment])
     );
-    handleShow = (event) => {
-        if (event.nativeEvent.contentOffset.y > 10 * hp('50')) {
-              setNextPage(true);
-        } else {
-            setNextPage(false);
-        }
-    }
+//    handleShow = (event) => {
+//        if (event.nativeEvent.contentOffset.y > 10 * hp('50')) {
+//              setNextPage(true);
+//        } else {
+//            setNextPage(false);
+//        }
+//    }
 
     const  onSearch = (searchQuery) => {
          setFilteredData(searchQuery)
@@ -126,36 +128,19 @@ return(
                />
           </View>
       :null}
-  {/*<Menu>
-   <MenuTrigger
-       customStyles={{ triggerWrapper: { marginRight: 3 } }}>
-          <MaterialIcon name="dots-vertical" size={hp('2.50%')} color="white" />
-      </MenuTrigger>
-       <MenuOptions style ={styles.menuStyle}>
-         <MenuOption onSelect={() => navigation.navigate('Favourite')} >
-              <Text style={styles.menuTextStyle}>Favourites</Text>
-          </MenuOption>
-          <MenuOption onSelect={() => navigation.navigate('Settings')} >
-           <Text style={styles.menuTextStyle}>Settings</Text>
-          </MenuOption>
-          <MenuOption onSelect={() => navigation.navigate('About')} >
-           <Text style={styles.menuTextStyle}>About</Text>
-         </MenuOption>
-       </MenuOptions>
-  </Menu>*/}
-               <Menu
-                    visible={visible}
-                    style ={styles.menuStyle}
-                    anchor={
-                            <TouchableOpacity activeOpacity={1}  style={{marginRight:wp('2'),width:wp('8'),justifyContent:'center',alignItems:'center',height:hp('5')}} onPress={showMenu}>
-                              <MaterialIcon name={'dots-vertical'} size={hp('2.50%')} color={'white'}   />
-                            </TouchableOpacity>
-                           }
+            <Menu
+                visible={visible}
+                style ={styles.menuStyle}
+                 anchor={
+                    <TouchableOpacity activeOpacity={1}  style={{marginRight:wp('2'),width:wp('8'),justifyContent:'center',alignItems:'center',height:hp('5')}} onPress={showMenu}>
+                      <MaterialIcon name={'dots-vertical'} size={hp('2.50%')} color={'white'}   />
+                    </TouchableOpacity>
+                     }
                     onRequestClose={hideMenu}>
-                     <MenuItem textStyle ={styles.menuTextStyle} onPress={() => dropdownCheck('1')}>Favourites</MenuItem>
-                        <MenuItem  textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('2')}>Settings</MenuItem>
-                       <MenuItem textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('3')}>About</MenuItem>
-               </Menu>
+                 <MenuItem textStyle ={styles.menuTextStyle} onPress={() => dropdownCheck('1')}>Favourites</MenuItem>
+                    <MenuItem  textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('2')}>Settings</MenuItem>
+                   <MenuItem textStyle ={styles.menuTextStyle}onPress={() => dropdownCheck('3')}>About</MenuItem>
+            </Menu>
     </View>
       <FlatList
              showsVerticalScrollIndicator={false}
@@ -199,7 +184,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     backgroundColor:'#080202',
     justifyContent:'space-between',
-    alignItems:'center'
+    alignItems:'center',
+
 
 
    },
@@ -253,6 +239,7 @@ const styles = StyleSheet.create({
         borderRadius:5,
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop:hp('.50')
      },
    materialSearch: {
       marginLeft: wp('4')
