@@ -5,7 +5,7 @@ View,
 Image,Switch,
 Text,Button,ImageBackground,
 StyleSheet,TouchableOpacity,FlatList,
-TextInput}
+TextInput,useColorScheme }
 from "react-native";
 import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import qs from 'qs';
@@ -17,24 +17,33 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function  Settings({navigation}){
 
-const test=() => {
-let person = {
-    firstName: 'John',
-    lastName: 'Doe'
-};
-
-console.log(person['firstName']);
-console.log(person['lastName']);
-
-}
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+ // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+ const colorScheme = useColorScheme();
+ const [color,setColor]=useState('dark')
+
+
+//console.log(colorScheme)
+
+   const toggleSwitch = (val) => {
+   setIsEnabled(previousState => !previousState)
+   if(val === true){
+   setColor('white')
+// console.log(val,'val..')
+//  console.log(color,'color..')
+  }else{
+    setColor('dark')
+  }
+   };
+
+
+
 return(
 
 
-<View style={styles.mainContainer}>
+<View style={[styles.mainContainer,{  backgroundColor :color === 'white' ? 'white' : '#080202' }]}>
        <View style={styles.HeaderView}>
-           <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
+           <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() =>navigation.navigate('Dashboard')}>
               <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
            </TouchableOpacity>
              <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Settings</Text>
@@ -45,10 +54,9 @@ return(
          <View style ={styles.featuresView}>
                   <Text style={{color:'white',fontSize:hp('1.8'),marginLeft:wp('5'),marginTop:hp('1'),fontFamily:'Manrope-Regular'}}>Dark Mode</Text>
 
- <Switch style={styles.switchRight}
-                     trackColor={{ false: "silver", true: "black" }}
-                     thumbColor={isEnabled ? "rgba(255, 179, 32, 1)" : "#FDD36A"}
-
+              <Switch style={styles.switchRight}
+                     trackColor={{ false: "silver", true: "#A0C49D" }}
+                     thumbColor={isEnabled ? "#557A46" : "white"}
                      onValueChange={value => toggleSwitch(value)}
                      value={isEnabled}
                   />
@@ -69,7 +77,7 @@ const styles= StyleSheet.create({
 
     mainContainer:{
         flex:1,
-        backgroundColor :'#080202'
+//        backgroundColor :'#080202'
      },
 
    HeaderView:{
@@ -83,9 +91,9 @@ const styles= StyleSheet.create({
    contentView:{
    width:wp('100'),
    height:hp('80'),
-   borderBottomWidth:wp('.3'),
-     borderTopWidth:wp('.3'),
-   borderColor:'gray'
+ //  borderBottomWidth:wp('.3'),
+   //  borderTopWidth:wp('.3'),
+  // borderColor:'gray'
 
 
    },
