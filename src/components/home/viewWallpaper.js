@@ -15,6 +15,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Context } from "../../state/context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WallPaperManager from "react-native-set-wallpaper";
+
 export default function ViewWallpaper({ route, navigation }) {
 
   const { value, updateValue } = useContext(Context);

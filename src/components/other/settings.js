@@ -1,17 +1,14 @@
-import React, { useEffect,useRef,useState } from "react";
+import React, { useEffect,useState } from "react";
 
 import {
-View,
-Image,Switch,
-Text,Button,ImageBackground,
+View
+,Switch,
+Text,
 StyleSheet,TouchableOpacity,FlatList,
 TextInput,useColorScheme }
 from "react-native";
 import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import qs from 'qs';
-import axios from 'axios';
-import { useFocusEffect } from "@react-navigation/native";
-import CardView from 'react-native-cardview'
+
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
