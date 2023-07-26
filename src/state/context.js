@@ -4,12 +4,12 @@ import { createContext,useState } from 'react';
 
     const Provider =({children}) => {
   const [value,setValue]=useState('');
-
+const [theme,setTheme]=useState('')
   const updateValue = (newValue) => {
       setValue(newValue);
     };
       return(
-      <Context.Provider value={{value,updateValue}}>
+      <Context.Provider value={{value,theme,updateValue}}>
       {children}
       </Context.Provider>
 

@@ -2,32 +2,14 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 
 import {
   View,
-  Image,
-  Text, Button, PermissionsAndroid,
-  StyleSheet, TouchableOpacity, FlatList, ImageBackground,
-  TextInput
+  Text, PermissionsAndroid,
+  StyleSheet, TouchableOpacity, ImageBackground,
+  
 }
   from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-
-import { useFocusEffect } from "@react-navigation/native";
-import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { NativeModules } from 'react-native';
-import ActionSheet from "react-native-actions-sheet";
 import RNFetchBlob from 'rn-fetch-blob';
-import {
-  BallIndicator,
-  BarIndicator,
-  DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
-} from 'react-native-indicators';
-import Toast from "react-native-simple-toast";
 import Snackbar from 'react-native-snackbar';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Context } from "../../state/context";
@@ -39,7 +21,7 @@ export default function ViewWallpaper({ route, navigation }) {
   const actionSheetRef = useRef();
   const wallpaper = route.params.data;
   const [download, setDownload] = useState(wallpaper.src.portrait);
-  const [loading, setLoading] = useState(false);
+
   //console.log(wallpaper)
 
   const applyWallpaper = (image) => {
