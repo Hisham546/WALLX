@@ -16,7 +16,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
-
+import { Context } from "../../state/context";
 
 export default function Dashboard({ navigation: { goBack }, navigation }) {
 
@@ -33,7 +33,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    const hideMenu = () => setVisible(false);
 
-
+   const { theme } = useContext(Context);
    function dropdownCheck(number) {
       if (number == '1') {
          navigation.navigate('Favourite')
@@ -97,7 +97,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    }
    return (
-      <View style={styles.container}>
+      <View style={[styles.container,{  backgroundColor :theme === 'white' ? 'white' : '#080202' }]}>
          <View style={styles.HeaderView}>
             {pressedSearch != true ?
                <Text style={{ color: 'white', fontSize: hp('1.60'), marginLeft: wp('4'), fontFamily: 'Manrope-Bold' }}>WALLX</Text>
@@ -141,7 +141,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
             data={filteredData.length > 0 ? searchData : data}
             onEndReached={increase} // Triggered when the user reaches the end of the list
             onEndReachedThreshold={0.2}
-            style={{ backgroundColor: '#080202', width: wp('99') }}
+            style={{ width: wp('99'),  backgroundColor :theme === 'white' ? 'white' : '#080202'  }}
             renderItem={({ item }) =>
                <>
                   <CardView
