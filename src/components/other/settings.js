@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useContext } from "react";
 
 import {
 View
@@ -8,10 +8,9 @@ StyleSheet,TouchableOpacity,FlatList,
 TextInput,useColorScheme }
 from "react-native";
 import {widthPercentageToDP as wp,heightPercentageToDP as hp} from 'react-native-responsive-screen'
-
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
+import { Context } from "../../state/context";
 export default function  Settings({navigation}){
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -19,17 +18,17 @@ export default function  Settings({navigation}){
  const colorScheme = useColorScheme();
  const [color,setColor]=useState('dark')
 
+ const { theme,updateTheme } = useContext(Context);
 
-//console.log(colorScheme)
+console.log(theme)
 
    const toggleSwitch = (val) => {
    setIsEnabled(previousState => !previousState)
    if(val === true){
-   setColor('white')
-// console.log(val,'val..')
-//  console.log(color,'color..')
+    updateTheme('white')
+
   }else{
-    setColor('dark')
+    updateTheme('dark')
   }
    };
 
@@ -42,7 +41,7 @@ export default function  Settings({navigation}){
 return(
 
 
-<View style={[styles.mainContainer,{  backgroundColor :color === 'white' ? 'white' : '#080202' }]}>
+<View style={[styles.mainContainer,{  backgroundColor :theme === 'white' ? 'white' : '#080202' }]}>
        <View style={styles.HeaderView}>
            <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
               <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />

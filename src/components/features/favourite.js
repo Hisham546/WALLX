@@ -18,7 +18,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Favourite({ navigation }) {
 
-   const { value } = useContext(Context);
+   const { theme } = useContext(Context);
+
+console.log(theme,'theme')
 
 
    const [favourites, setFavourite] = useState('');
