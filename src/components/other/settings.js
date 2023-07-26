@@ -38,12 +38,16 @@ export default function  Settings({navigation}){
 
 
 
+
+
+
+
 return(
 
 
 <View style={[styles.mainContainer,{  backgroundColor :color === 'white' ? 'white' : '#080202' }]}>
        <View style={styles.HeaderView}>
-           <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() =>navigation.navigate('Dashboard')}>
+           <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
               <MaterialIcon name="arrow-left" size={hp('3.20%')} color="white" style={{marginRight: wp('3')}} />
            </TouchableOpacity>
              <Text style={{color:'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Settings</Text>
