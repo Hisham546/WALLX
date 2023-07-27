@@ -13,7 +13,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../../state/context";
 export default function  Settings({navigation}){
 
-  const [isEnabled, setIsEnabled] = useState(theme === "white"?  false: true);
+  const [isEnabled, setIsEnabled] = useState(true);
  // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
  const colorScheme = useColorScheme();
  const [color,setColor]=useState('dark')
@@ -21,16 +21,17 @@ export default function  Settings({navigation}){
  const { theme,updateTheme } = useContext(Context);
 
 
-
+console.log(theme,'theme')
+console.log(isEnabled)
    const toggleSwitch = (val) => {
  
     if(val === true){
-      setIsEnabled(previousState => !previousState)
-      updateTheme('white')
+      setIsEnabled(true)
+      updateTheme('#080202')
 
     }else{
-      setIsEnabled(previousState => !previousState)
-      updateTheme('dark')
+      setIsEnabled(false)
+      updateTheme('white')
     }
    };
 
@@ -43,18 +44,18 @@ export default function  Settings({navigation}){
 return(
 
 
-<View style={[styles.mainContainer,{  backgroundColor :theme === 'white' ? 'white' : '#080202' }]}>
-       <View style={[styles.HeaderView,{  backgroundColor :theme === 'white' ? 'white' : '#080202' }]}>
+<View style={[styles.mainContainer,{  backgroundColor :theme === '#080202' ? '#080202' : 'white' }]}>
+       <View style={[styles.HeaderView,{  backgroundColor :theme === '#080202' ? '#080202' : 'white' }]}>
            <TouchableOpacity style={{marginLeft:wp('2')}}  onPress={() => navigation.navigate('Dashboard')}>
-              <MaterialIcon name="arrow-left" size={hp('3.20%')}  style={{marginRight: wp('3'),color :theme === 'white' ? 'black' : 'white',}} />
+              <MaterialIcon name="arrow-left" size={hp('3.20%')}  style={{marginRight: wp('3'),color :theme === '#080202' ? 'white' : 'black',}} />
            </TouchableOpacity>
-             <Text style={{color :theme === 'white' ? 'black' : 'white',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Settings</Text>
+             <Text style={{color :theme === '#080202' ? 'white' : 'black',fontSize:hp('2'),marginLeft:wp('8'),fontFamily:'Manrope-Bold'}}>Settings</Text>
        </View>
        <View style ={styles.contentView}>
-         <Text style={{color :theme === 'white' ? 'black' : 'white',fontSize:hp('1.6'),marginLeft:wp('5'),marginTop:hp('1'),fontFamily:'Manrope-Regular'}}>Appearance</Text>
+         <Text style={{color :theme === '#080202' ? 'white' : 'black',fontSize:hp('1.6'),marginLeft:wp('5'),marginTop:hp('1'),fontFamily:'Manrope-Regular'}}>Appearance</Text>
 
          <View style ={styles.featuresView}>
-                  <Text style={{color :theme === 'white' ? 'black' : 'white',fontSize:hp('1.8'),marginLeft:wp('5'),marginTop:hp('1'),fontFamily:'Manrope-Regular'}}>Dark Mode</Text>
+                  <Text style={{color :theme === '#080202' ? 'white' : 'black',fontSize:hp('1.8'),marginLeft:wp('5'),marginTop:hp('1'),fontFamily:'Manrope-Regular'}}>Change Theme</Text>
 
               <Switch style={styles.switchRight}
                      trackColor={{ false: "silver", true: "#A0C49D" }}

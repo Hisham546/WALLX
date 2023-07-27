@@ -97,7 +97,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    }
    return (
-      <View style={[styles.container,{  backgroundColor :theme === 'white' ? 'white' : '#080202' }]}>
+      <View style={[styles.container,{  backgroundColor :theme === '#080202'? '#080202' : 'white'  }]}>
          <View style={styles.HeaderView}>
             {pressedSearch != true ?
                <Text style={{ color: 'white', fontSize: hp('1.60'), marginLeft: wp('4'), fontFamily: 'Manrope-Bold' }}>WALLX</Text>
@@ -141,7 +141,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
             data={filteredData.length > 0 ? searchData : data}
             onEndReached={increase} // Triggered when the user reaches the end of the list
             onEndReachedThreshold={0.2}
-            style={{ width: wp('99'),  backgroundColor :theme === 'white' ? 'white' : '#080202'  }}
+            style={{ width: wp('99'),  backgroundColor :theme === '#080202' ? '#080202' : 'white'   }}
             renderItem={({ item }) =>
                <>
                   <CardView
