@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
       width: wp('95'),
       marginLeft: wp('3'),
       fontSize: hp('1.60'),
-      fontFamily: 'Manrope-Regular-Regular'
+      fontFamily: 'Manrope-Regular'
    },
    searchView: {
       height: hp('5%'),

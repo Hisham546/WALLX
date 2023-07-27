@@ -13,7 +13,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../../state/context";
 export default function  Settings({navigation}){
 
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(theme === '#080202' ? true : false);
  // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
  const colorScheme = useColorScheme();
  const [color,setColor]=useState('dark')
@@ -21,8 +21,6 @@ export default function  Settings({navigation}){
  const { theme,updateTheme } = useContext(Context);
 
 
-console.log(theme,'theme')
-console.log(isEnabled)
    const toggleSwitch = (val) => {
  
     if(val === true){
