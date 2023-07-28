@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState,useContext } from "react";
 
 import {
    View,
-   Image,
+   Animated,
    Text, Button, ImageBackground,
    StyleSheet, TouchableOpacity, FlatList,
    TextInput
@@ -17,7 +17,17 @@ import CardView from 'react-native-cardview'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import { Context } from "../../state/context";
-
+import {
+   BallIndicator,
+   BarIndicator,
+   DotIndicator,
+   MaterialIndicator,
+   PacmanIndicator,
+   PulseIndicator,
+   SkypeIndicator,
+   UIActivityIndicator,
+   WaveIndicator,
+ } from 'react-native-indicators';
 export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    const [data, setData] = useState([]);
@@ -60,18 +70,18 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
    }
 
 
-   useFocusEffect(
-      React.useCallback(() => {
-         api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
+   // useFocusEffect(
+   //    React.useCallback(() => {
+   //       api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
 
-            .then(function (response) {
-               setData(response.data.photos)
-            })
-            .catch(function (error) {
-            });
+   //          .then(function (response) {
+   //             setData(response.data.photos)
+   //          })
+   //          .catch(function (error) {
+   //          });
 
-      }, [increment])
-   );
+   //    }, [increment])
+   // );
    //    handleShow = (event) => {
    //        if (event.nativeEvent.contentOffset.y > 10 * hp('50')) {
    //              setNextPage(true);
@@ -96,15 +106,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
       setPressedSearch(false)
 
    }
-const EmptyComponent = () => {
-   return(
-<View style={styles.EmptyComponent}>
 
-<Text style={{ color: 'white', fontSize: hp('1.60'), marginLeft: wp('4'), fontFamily: 'Manrope-Bold' }}>Empty</Text>
-
-</View>
-
-)}
 
    return (
       <View style={[styles.container,{  backgroundColor :theme === '#080202'? '#080202' : 'white'  }]}>
@@ -158,16 +160,22 @@ const EmptyComponent = () => {
                      cornerRadius={5}
                      style={styles.item}>
                      <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("ViewWallpaper", { data: item })}>
+                       { (item.src.portrait) ?
+                    
                         <ImageBackground source={{ uri: item.src.portrait }} style={{ height: hp('27%'), borderRadius: 5, width: wp('90%') }} resizeMode="cover" />
-                        {/*<Text style={{fontSize:hp('1.70'),letterSpacing:wp('.10%'),minWidth:wp('15'),marginTop:hp('2'),fontWeight:'400',color:'black'}}>{item.photographer}</Text>*/}
+:
+                        <DotIndicator color='black' />}
                      </TouchableOpacity>
                   </CardView>
 
                </>
             }
             ListEmptyComponent={
-              EmptyComponent
-      }
+               <View style={{ width: wp('100'), height: hp('100'), justifyContent: 'center', alignItems: 'center' }}>
+               <MaterialIcon name="image-off-outline" size={hp('6.20%')} color="white" />
+               <Text style={{ color: 'white', fontSize: hp('2'), marginTop: hp('3'), fontFamily: 'Manrope-Bold' }}>Something went wrong</Text>
+            </View>
+            }
          />
 
 
