@@ -96,6 +96,16 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
       setPressedSearch(false)
 
    }
+const EmptyComponent = () => {
+   return(
+<View style={styles.EmptyComponent}>
+
+<Text style={{ color: 'white', fontSize: hp('1.60'), marginLeft: wp('4'), fontFamily: 'Manrope-Bold' }}>Empty</Text>
+
+</View>
+
+)}
+
    return (
       <View style={[styles.container,{  backgroundColor :theme === '#080202'? '#080202' : 'white'  }]}>
          <View style={styles.HeaderView}>
@@ -155,7 +165,9 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
                </>
             }
-
+            ListEmptyComponent={
+              EmptyComponent
+      }
          />
 
 
@@ -237,4 +249,10 @@ const styles = StyleSheet.create({
    materialSearch: {
       marginLeft: wp('4')
    },
+   EmptyComponent:{
+     width:wp('100'),
+     height:hp('100'),
+     
+
+   }
 });
