@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState,useContext } from "react";
 
 import {
    View,
-   Animated,
+   Image,
    Text, Button, ImageBackground,
    StyleSheet, TouchableOpacity, FlatList,
    TextInput
@@ -44,6 +44,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
    const hideMenu = () => setVisible(false);
 
    const { theme } = useContext(Context);
+
    function dropdownCheck(number) {
       if (number == '1') {
          navigation.navigate('Favourite')
@@ -69,19 +70,19 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    }
 
+// useFocusEffect will trigger the api when the component get focused
+   useFocusEffect(
+      React.useCallback(() => {
+         api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
 
-   // useFocusEffect(
-   //    React.useCallback(() => {
-   //       api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
+            .then(function (response) {
+               setData(response.data.photos)
+            })
+            .catch(function (error) {
+            });
 
-   //          .then(function (response) {
-   //             setData(response.data.photos)
-   //          })
-   //          .catch(function (error) {
-   //          });
-
-   //    }, [increment])
-   // );
+      }, [increment])
+   );
    //    handleShow = (event) => {
    //        if (event.nativeEvent.contentOffset.y > 10 * hp('50')) {
    //              setNextPage(true);
@@ -89,19 +90,18 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
    //            setNextPage(false);
    //        }
    //    }
-
+// Used to search wallpaper
    const onSearch = (searchQuery) => {
       setFilteredData(searchQuery)
       api.get(`https://api.pexels.com/v1/search?query=${searchQuery}&per_page=5`)
          .then(function (response) {
-
             setSearchData(response.data.photos)
          })
          .catch(function (error) {
          });
    }
+   // This function will remove the searched value
    function resetSearch() {
-
       setFilteredData('')
       setPressedSearch(false)
 
@@ -158,7 +158,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
                <>
                   <CardView
                      cornerRadius={5}
-                     style={styles.item}>
+                     style={[styles.item,{  backgroundColor : item.src.portrait  === '' ? '#080202' : 'white' }]}>
                      <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("ViewWallpaper", { data: item })}>
                        { (item.src.portrait) ?
                     
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
    item: {
       height: hp('27%'),
       width: wp(' 50%'),
-      backgroundColor: 'white',
+     // backgroundColor: 'white',
       borderRadius: 8,
       shadowColor: '#000000',
       shadowOffset: { width: 0, height: 1 },
