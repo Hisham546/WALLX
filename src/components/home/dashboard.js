@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState,useContext } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 
 import {
    View,
@@ -27,7 +27,7 @@ import {
    SkypeIndicator,
    UIActivityIndicator,
    WaveIndicator,
- } from 'react-native-indicators';
+} from 'react-native-indicators';
 export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    const [data, setData] = useState([]);
@@ -70,7 +70,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
    }
 
-// useFocusEffect will trigger the api when the component get focused
+   // useFocusEffect will trigger the api when the component get focused
    useFocusEffect(
       React.useCallback(() => {
          api.get(`https://api.pexels.com/v1/curated/?page=${increment}&per_page=30`)
@@ -90,7 +90,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
    //            setNextPage(false);
    //        }
    //    }
-// Used to search wallpaper
+   // Used to search wallpaper
    const onSearch = (searchQuery) => {
       setFilteredData(searchQuery)
       api.get(`https://api.pexels.com/v1/search?query=${searchQuery}&per_page=5`)
@@ -109,7 +109,7 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
 
 
    return (
-      <View style={[styles.container,{  backgroundColor :theme === '#080202'? '#080202' : 'white'  }]}>
+      <View style={[styles.container, { backgroundColor: theme === '#080202' ? '#080202' : 'white' }]}>
          <View style={styles.HeaderView}>
             {pressedSearch != true ?
                <Text style={{ color: 'white', fontSize: hp('1.60'), marginLeft: wp('4'), fontFamily: 'Manrope-Bold' }}>WALLX</Text>
@@ -153,18 +153,18 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
             data={filteredData.length > 0 ? searchData : data}
             onEndReached={increase} // Triggered when the user reaches the end of the list
             onEndReachedThreshold={0.2}
-            style={{ width: wp('99'),  backgroundColor :theme === '#080202' ? '#080202' : 'white'   }}
+            style={{ width: wp('99'), backgroundColor: theme === '#080202' ? '#080202' : 'white' }}
             renderItem={({ item }) =>
                <>
                   <CardView
                      cornerRadius={5}
-                     style={[styles.item,{  backgroundColor : item.src.portrait  === '' ? '#080202' : 'white' }]}>
+                     style={[styles.item, { backgroundColor: item.src.portrait === '' ? '#080202' : 'white' }]}>
                      <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("ViewWallpaper", { data: item })}>
-                       { (item.src.portrait) ?
-                    
-                        <ImageBackground source={{ uri: item.src.portrait }} style={{ height: hp('27%'), borderRadius: 5, width: wp('90%') }} resizeMode="cover" />
-:
-                        <DotIndicator color='black' />}
+                        {(item.src.portrait) ?
+
+                           <ImageBackground source={{ uri: item.src.portrait }} style={{ height: hp('27%'), borderRadius: 5, width: wp('90%') }} resizeMode="cover" />
+                           :
+                           <DotIndicator color='black' />}
                      </TouchableOpacity>
                   </CardView>
 
@@ -172,9 +172,9 @@ export default function Dashboard({ navigation: { goBack }, navigation }) {
             }
             ListEmptyComponent={
                <View style={{ width: wp('100'), height: hp('100'), justifyContent: 'center', alignItems: 'center' }}>
-               <MaterialIcon name="image-off-outline" size={hp('6.20%')} color="white" />
-               <Text style={{ color: 'white', fontSize: hp('2'), marginTop: hp('3'), fontFamily: 'Manrope-Bold' }}>Something went wrong</Text>
-            </View>
+                  <MaterialIcon name="image-off-outline" size={hp('6.20%')} color="white" />
+                  <Text style={{ color: 'white', fontSize: hp('2'), marginTop: hp('3'), fontFamily: 'Manrope-Bold' }}>Something went wrong</Text>
+               </View>
             }
          />
 
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
    item: {
       height: hp('27%'),
       width: wp(' 50%'),
-     // backgroundColor: 'white',
+      // backgroundColor: 'white',
       borderRadius: 8,
       shadowColor: '#000000',
       shadowOffset: { width: 0, height: 1 },
@@ -257,10 +257,10 @@ const styles = StyleSheet.create({
    materialSearch: {
       marginLeft: wp('4')
    },
-   EmptyComponent:{
-     width:wp('100'),
-     height:hp('100'),
-     
+   EmptyComponent: {
+      width: wp('100'),
+      height: hp('100'),
+
 
    }
 });
