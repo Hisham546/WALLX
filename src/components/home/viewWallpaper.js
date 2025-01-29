@@ -191,11 +191,18 @@ const styles = StyleSheet.create({
   },
   iconView: {
     width: wp('100%'),
-    height: hp('5%'),
+   // height: hp('5%'),
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 25,
     paddingVertical: 7,
+    position: 'absolute',
+    bottom: 30,
+    left: '5%',
+    right: '5%',
+    zIndex: 1,
+    width: '90%',
+    //backgroundColor:'red'
   },
 
   infoView: {
